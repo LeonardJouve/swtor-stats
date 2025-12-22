@@ -1,33 +1,19 @@
 import Player from "../player";
 import Stat from "./stat";
+import {linear} from "../utils";
 
 
 export default class BonusDamage {
-    private static MASTERY_COEFFICIENT = 0.2;
-    private static POWER_COEFFICIENT = 0.23;
-
-    private static fromMastery(player: Player): number {
-        const {
-            mastery,
-            masteryIncrease,
-        } = player;
-
-        return mastery * (1 + masteryIncrease) * this.MASTERY_COEFFICIENT;
+    private static fromMastery({mastery, masteryIncrease}: Player): number {
+        return linear(0.2, mastery) * (1 + masteryIncrease);
     }
 
-    private static fromPower(player: Player): number {
-        const {
-            power,
-            powerIncrease,
-        } = player;
-
-        return power * (1 + powerIncrease) * this.POWER_COEFFICIENT;
+    private static fromPower({power, powerIncrease}: Player): number {
+        return linear(0.23, power) * (1 + powerIncrease);
     }
 
     static calculate(player: Player): number {
-        const {bonusDamageIncrease} = player;
-
-        return (this.fromMastery(player) + this.fromPower(player)) * (1 + bonusDamageIncrease);
+        return (this.fromMastery(player) + this.fromPower(player)) * (1 + player.bonusDamageIncrease);
     }
 }
 

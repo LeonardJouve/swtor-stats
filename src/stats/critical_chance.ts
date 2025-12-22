@@ -1,33 +1,16 @@
 import Player from "../player";
 import Stat from "./stat";
+import {diminishingReturn} from "../utils";
 
 export default class CriticalChance {
     private static BASE_CRITICAL_CHANCE = 0.05;
 
-    // For level 80
-    private static masteryDivisor = 12.93;
-    private static criticalDivisor = 2.41;
-
-    private static fromMastery(player: Player): number {
-        const {
-            mastery,
-            level,
-        } = player;
-        const base = 1 - 0.01 / 0.2;
-        const power = (mastery / level) / CriticalChance.masteryDivisor;
-
-        return 0.2 * (1 - (Math.pow(base, power)));
+    private static fromMastery({mastery, level}: Player): number {
+        return diminishingReturn(level, mastery, 0.2, 12.93);
     }
 
-    private static fromCritical(player: Player): number {
-        const {
-            level,
-            critical,
-        } = player;
-        const base = 1 - 0.01 / 0.3;
-        const power = (critical / level) / CriticalChance.criticalDivisor;
-
-        return 0.3 * (1 - Math.pow(base, power));
+    private static fromCritical({critical, level}: Player): number {
+        return diminishingReturn(level, critical, 0.3, 2.41);
     }
 
     static calculate(player: Player): number {

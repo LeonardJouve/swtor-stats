@@ -4,13 +4,7 @@ import Stat from "./stat";
 export default class Health {
     private static BASE_HEALTH = 23_750;
 
-    static calculate(player: Player): number {
-        const {
-            endurance,
-            enduranceIncrease,
-            maxHealthIncrease,
-        } = player;
-
+    static calculate({endurance, enduranceIncrease, maxHealthIncrease}: Player): number {
         return (this.BASE_HEALTH + (endurance * 12 * (1 + enduranceIncrease))) * (1 + maxHealthIncrease);
     }
 }
