@@ -1,13 +1,16 @@
-import Player from "../player";
-import Stat from "./stat";
 import {diminishingReturn} from "../utils";
+import Rating from "./rating";
 
-export default class CriticalMultiplier {
-    private static BASE_CRITICAL_MULTIPLIER = 0.5;
+export default class CriticalMultiplier extends Rating {
+    private criticalRating: Rating;
 
-    static calculate({level, critical}: Player): number {
-        return diminishingReturn(level, critical, 0.3, 2.41) + CriticalMultiplier.BASE_CRITICAL_MULTIPLIER;
+    constructor(criticalRating: Rating) {
+        super();
+        this.coefficient += 0.5;
+        this.criticalRating = criticalRating;
+    }
+
+    get rating() {
+        return diminishingReturn(this.criticalRating.value, 0.3, 2.41);
     }
 }
-
-CriticalMultiplier satisfies Stat;

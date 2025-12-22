@@ -1,137 +1,74 @@
+import Absorb from "./stats/absorb";
+import Accuracy from "./stats/accuracy";
+import Alacrity from "./stats/alacrity";
+import BonusDamage from "./stats/bonus_damage";
+import BonusHealing from "./stats/bonus_healing";
+import CastTime from "./stats/cast_time";
+import CriticalChance from "./stats/critical_chance";
+import CriticalDamage from "./stats/critical_damage";
+import CriticalMultiplier from "./stats/critical_multiplier";
+import GCD from "./stats/gcd";
+import Health from "./stats/health";
+import MeleeRangedDefence from "./stats/melee_ranged_defense";
+import Rating from "./stats/rating";
+import Shield from "./stats/shield";
+
+type Ratings = {
+    absorb?: number;
+    accuracy?: number;
+    alacrity?: number;
+    critical?: number;
+    defense?: number;
+    endurance?: number;
+    mastery?: number;
+    power?: number;
+    shield?: number;
+};
+
 export default class Player {
-    private _level: number;
-
-    // Primary
-    private _endurance: number;
-    private _mastery: number;
-
-    // Secondary
-    private _power: number;
-    private _defense: number;
-
-    // Tertiary
-    private _alacrity: number;
-    private _critical: number;
-    private _accuracy: number;
-    private _absorb: number;
-    private _shield: number;
-    private _presence: number;
-
-    // Bonus coefficient
-    private _enduranceIncrease: number;
-    private _maxHealthIncrease: number;
-    private _masteryIncrease: number;
-    private _powerIncrease: number;
-    private _bonusDamageIncrease: number;
-    private _bonusHealingIncrease: number;
-    private _meleeRangedDefenceIncrease: number;
-    private _shieldIncrease: number;
-    private _absorbIncrease: number;
-
-    constructor() {
-        this._level = 80;
-
-        this._endurance = 0;
-        this._mastery = 0;
-
-        this._power = 0;
-        this._defense = 0;
-
-        this._alacrity = 2054;
-        this._critical = 0;
-        this._accuracy = 2694;
-        this._absorb = 0;
-        this._shield = 0;
-        this._presence = 0;
-
-        this._enduranceIncrease = 0;
-        this._maxHealthIncrease = 0;
-        this._masteryIncrease = 0;
-        this._powerIncrease = 0;
-        this._bonusDamageIncrease = 0;
-        this._bonusHealingIncrease = 0;
-        this._meleeRangedDefenceIncrease = 0;
-        this._shieldIncrease = 0;
-        this._absorbIncrease = 0;
+    constructor({
+        absorb = 0,
+        accuracy = 0,
+        alacrity = 0,
+        critical = 0,
+        defense = 0,
+        endurance = 0,
+        mastery = 0,
+        power = 0,
+        shield = 0,
+    }: Ratings = {}) {
+        this.absorbRating.rating = absorb;
+        this.accuracyRating.rating = accuracy;
+        this.alacrityRating.rating = alacrity;
+        this.criticalRating.rating = critical;
+        this.defenseRating.rating = defense;
+        this.enduranceRating.rating = endurance;
+        this.masteryRating.rating = mastery;
+        this.powerRating.rating = power;
+        this.shieldRating.rating = shield;
     }
 
-    get level() {
-        return this._level;
-    }
+    public absorbRating = new Rating();
+    public accuracyRating = new Rating();
+    public alacrityRating = new Rating();
+    public criticalRating = new Rating();
+    public defenseRating = new Rating();
+    public enduranceRating = new Rating();
+    public masteryRating = new Rating();
+    public powerRating = new Rating();
+    public shieldRating = new Rating();
 
-    get endurance() {
-        return this._endurance;
-    }
-
-    get mastery() {
-        return this._mastery;
-    }
-
-    get power() {
-        return this._power;
-    }
-
-    get defense() {
-        return this._defense;
-    }
-
-    get alacrity() {
-        return this._alacrity;
-    }
-
-    get critical() {
-        return this._critical;
-    }
-
-    get accuracy() {
-        return this._accuracy;
-    }
-
-    get absorb() {
-        return this._absorb;
-    }
-
-    get shield() {
-        return this._shield;
-    }
-
-    get presence() {
-        return this._presence;
-    }
-
-    get enduranceIncrease() {
-        return this._enduranceIncrease;
-    }
-
-    get maxHealthIncrease() {
-        return this._maxHealthIncrease;
-    }
-
-    get masteryIncrease() {
-        return this._masteryIncrease;
-    }
-
-    get powerIncrease() {
-        return this._powerIncrease;
-    }
-
-    get bonusDamageIncrease() {
-        return this._bonusDamageIncrease;
-    }
-
-    get bonusHealingIncrease() {
-        return this._bonusHealingIncrease;
-    }
-
-    get meleeRangedDefenceIncrease() {
-        return this._meleeRangedDefenceIncrease;
-    }
-
-    get shieldIncrease() {
-        return this._shieldIncrease;
-    }
-
-    get absorbIncrease() {
-        return this._absorbIncrease;
-    }
+    public absorb = new Absorb(this.absorbRating);
+    public accuracy = new Accuracy(this.accuracyRating);
+    public alacrity = new Alacrity(this.alacrityRating);
+    public bonusDamage = new BonusDamage(this.masteryRating, this.powerRating);
+    public bonusHealing = new BonusHealing(this.masteryRating, this.powerRating);
+    public castTime = new CastTime(this.alacrity);
+    public criticalChance = new CriticalChance(this.masteryRating, this.criticalRating);
+    public criticalMultiplier = new CriticalMultiplier(this.criticalRating);
+    public criticalDamage = new CriticalDamage(this.criticalMultiplier, this.criticalChance);
+    public gcd = new GCD(this.alacrity);
+    public health = new Health(this.enduranceRating);
+    public meleeRangedDefense = new MeleeRangedDefence(this.defenseRating);
+    public shield = new Shield(this.shieldRating);
 }

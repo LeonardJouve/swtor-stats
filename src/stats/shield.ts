@@ -1,11 +1,15 @@
-import Player from "../player";
-import Stat from "./stat";
 import {diminishingReturn} from "../utils";
+import Rating from "./rating";
 
-export default class Shield {
-    static calculate({shield, shieldIncrease, level}: Player): number {
-        return diminishingReturn(level, shield, 0.5, 2.079) + shieldIncrease;
+export default class Shield extends Rating {
+    private shieldRating: Rating;
+
+    constructor(shieldRating: Rating) {
+        super();
+        this.shieldRating = shieldRating;
+    }
+
+    get rating() {
+        return diminishingReturn(this.shieldRating.value, 0.5, 2.079);
     }
 }
-
-Shield satisfies Stat;

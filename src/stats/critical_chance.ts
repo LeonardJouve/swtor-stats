@@ -1,21 +1,20 @@
-import Player from "../player";
-import Stat from "./stat";
 import {diminishingReturn} from "../utils";
+import Rating from "./rating";
 
-export default class CriticalChance {
-    private static BASE_CRITICAL_CHANCE = 0.05;
+export default class CriticalChance extends Rating {
+    private masteryRating: Rating;
+    private criticalRating: Rating;
 
-    private static fromMastery({mastery, level}: Player): number {
-        return diminishingReturn(level, mastery, 0.2, 12.93);
+    constructor(masteryRating: Rating, criticalRating: Rating) {
+        super();
+        this.initial += 0.05;
+        this.masteryRating = masteryRating;
+        this.criticalRating = criticalRating;
     }
 
-    private static fromCritical({critical, level}: Player): number {
-        return diminishingReturn(level, critical, 0.3, 2.41);
-    }
-
-    static calculate(player: Player): number {
-        return this.fromMastery(player) + this.fromCritical(player) + this.BASE_CRITICAL_CHANCE;
+    get rating() {
+        const mastery = diminishingReturn(this.masteryRating.value, 0.2, 12.93);
+        const critical = diminishingReturn(this.criticalRating.value, 0.3, 2.41);
+        return mastery + critical;
     }
 }
-
-CriticalChance satisfies Stat;

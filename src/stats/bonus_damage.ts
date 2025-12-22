@@ -1,20 +1,19 @@
-import Player from "../player";
-import Stat from "./stat";
 import {linear} from "../utils";
+import Rating from "./rating";
 
+export default class BonusDamage extends Rating {
+    private masteryRating: Rating;
+    private powerRating: Rating;
 
-export default class BonusDamage {
-    private static fromMastery({mastery, masteryIncrease}: Player): number {
-        return linear(0.2, mastery) * (1 + masteryIncrease);
+    constructor(masteryRating: Rating, powerRating: Rating) {
+        super();
+        this.masteryRating = masteryRating;
+        this.powerRating = powerRating;
     }
 
-    private static fromPower({power, powerIncrease}: Player): number {
-        return linear(0.23, power) * (1 + powerIncrease);
-    }
-
-    static calculate(player: Player): number {
-        return (this.fromMastery(player) + this.fromPower(player)) * (1 + player.bonusDamageIncrease);
+    get rating() {
+        const mastery = linear(0.2, this.masteryRating.value);
+        const power = linear(0.23, this.powerRating.value);
+        return mastery + power;
     }
 }
-
-BonusDamage satisfies Stat;

@@ -1,13 +1,14 @@
-import Player from "../player";
-import Alacrity from "./alacrity";
-import Stat from "./stat";
+import Rating from "./rating";
 
-export default class CastTime {
-    static calculate(player: Player): number {
-        const alacrity = Alacrity.calculate(player);
+export default class CastTime extends Rating {
+    private alacrity: Rating;
 
-        return 1 / (1 + alacrity * 100);
+    constructor(alacrity: Rating) {
+        super();
+        this.alacrity = alacrity;
+    }
+
+    get rating() {
+        return 1 / (1 + this.alacrity.value * 100);
     }
 }
-
-CastTime satisfies Stat;

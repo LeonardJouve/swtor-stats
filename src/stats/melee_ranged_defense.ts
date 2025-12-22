@@ -1,13 +1,16 @@
-import Player from "../player";
-import Stat from "./stat";
 import {diminishingReturn} from "../utils";
+import Rating from "./rating";
 
-export default class MeleeRangedDefence {
-    private static BASE_MELEE_RANGED_DEFENCE = 0.05;
+export default class MeleeRangedDefence extends Rating {
+    private defenseRating: Rating;
 
-    static calculate({defense, meleeRangedDefenceIncrease, level}: Player): number {
-        return diminishingReturn(level, defense, 0.3, 5) + meleeRangedDefenceIncrease + this.BASE_MELEE_RANGED_DEFENCE;
+    constructor(defenseRating: Rating) {
+        super();
+        this.coefficient += 0.05;
+        this.defenseRating = defenseRating;
+    }
+
+    get rating(): number {
+        return diminishingReturn(this.defenseRating.value, 0.3, 5);
     }
 }
-
-MeleeRangedDefence satisfies Stat;

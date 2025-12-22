@@ -1,16 +1,16 @@
-import Player from "../player";
-import Alacrity from "./alacrity";
-import Stat from "./stat";
+import Rating from "./rating";
 
-export default class GCD {
-    private static BASE_GCD = 1.5;
+export default class GCD extends Rating {
+    private alacrity: Rating;
 
-    static calculate(player: Player): number {
-        const alacrity = Alacrity.calculate(player);
-        const gcd = this.BASE_GCD / (alacrity + 1);
+    constructor(alacrity: Rating) {
+        super();
+        this.alacrity = alacrity;
+    }
+
+    get rating() {
+        const gcd = 1.5 / (this.alacrity.value + 1);
 
         return Math.ceil(gcd * 10) / 10;
     }
 }
-
-GCD satisfies Stat;

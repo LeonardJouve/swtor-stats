@@ -1,12 +1,15 @@
-import Player from "../player";
-import Stat from "./stat";
+import Rating from "./rating";
 
-export default class Health {
-    private static BASE_HEALTH = 23_750;
+export default class Health extends Rating {
+    private enduranceRating: Rating;
 
-    static calculate({endurance, enduranceIncrease, maxHealthIncrease}: Player): number {
-        return (this.BASE_HEALTH + (endurance * 12 * (1 + enduranceIncrease))) * (1 + maxHealthIncrease);
+    constructor(enduranceRating: Rating) {
+        super();
+        this.initial += 23_750;
+        this.enduranceRating = enduranceRating;
+    }
+
+    get rating() {
+        return this.enduranceRating.value * 12;
     }
 }
-
-Health satisfies Stat;

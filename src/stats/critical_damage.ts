@@ -1,15 +1,16 @@
-import Player from "../player";
-import CriticalChance from "./critical_chance";
-import CriticalMultiplier from "./critical_multiplier";
-import Stat from "./stat";
+import Rating from "./rating";
 
-export default class CriticalDamage {
-    static calculate(player: Player): number {
-        const criticalChance = CriticalChance.calculate(player);
-        const criticalMultiplier = CriticalMultiplier.calculate(player);
+export default class CriticalDamage extends Rating {
+    private criticalMultiplier: Rating;
+    private criticalChance: Rating;
 
-        return 1 + criticalMultiplier * Math.max(1, criticalChance);
+    constructor(criticalMultiplier: Rating, criticalChance: Rating) {
+        super();
+        this.criticalMultiplier = criticalMultiplier;
+        this.criticalChance = criticalChance;
+    }
+
+    get rating() {
+        return 1 + this.criticalMultiplier.value * Math.max(1, this.criticalChance.value);
     }
 }
-
-CriticalDamage satisfies Stat;
