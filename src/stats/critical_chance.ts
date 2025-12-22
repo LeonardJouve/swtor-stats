@@ -4,15 +4,19 @@ import Stat from "./stat";
 export default class CriticalChance {
     private static BASE_CRITICAL_CHANCE = 0.05;
 
+    // For level 80
+    private static masteryDivisor = 12.93;
+    private static criticalDivisor = 2.41;
+
     private static fromMastery(player: Player): number {
         const {
             mastery,
             level,
         } = player;
         const base = 1 - 0.01 / 0.2;
-        const power = (mastery / level) / 5.5;
+        const power = (mastery / level) / CriticalChance.masteryDivisor;
 
-        return 20 * (1 - (Math.pow(base, power)));
+        return 0.2 * (1 - (Math.pow(base, power)));
     }
 
     private static fromCritical(player: Player): number {
@@ -21,9 +25,9 @@ export default class CriticalChance {
             critical,
         } = player;
         const base = 1 - 0.01 / 0.3;
-        const power = (critical / level) / 0.8;
+        const power = (critical / level) / CriticalChance.criticalDivisor;
 
-        return 30 * (1 - Math.pow(base, power));
+        return 0.3 * (1 - Math.pow(base, power));
     }
 
     static calculate(player: Player): number {

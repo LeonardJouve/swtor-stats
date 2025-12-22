@@ -7,7 +7,7 @@ export default class Player {
 
     // Secondary
     private _power: number;
-    private _defence: number;
+    private _defense: number;
 
     // Tertiary
     private _alacrity: number;
@@ -25,6 +25,8 @@ export default class Player {
     private _bonusDamageIncrease: number;
     private _bonusHealingIncrease: number;
     private _meleeRangedDefenceIncrease: number;
+    private _shieldIncrease: number;
+    private _absorbIncrease: number;
 
     constructor() {
         this._level = 80;
@@ -33,11 +35,11 @@ export default class Player {
         this._mastery = 0;
 
         this._power = 0;
-        this._defence = 0;
+        this._defense = 0;
 
-        this._alacrity = 800;
+        this._alacrity = 2054;
         this._critical = 0;
-        this._accuracy = 0;
+        this._accuracy = 2694;
         this._absorb = 0;
         this._shield = 0;
         this._presence = 0;
@@ -49,6 +51,8 @@ export default class Player {
         this._bonusDamageIncrease = 0;
         this._bonusHealingIncrease = 0;
         this._meleeRangedDefenceIncrease = 0;
+        this._shieldIncrease = 0;
+        this._absorbIncrease = 0;
     }
 
     get level() {
@@ -67,8 +71,8 @@ export default class Player {
         return this._power;
     }
 
-    get defence() {
-        return this._defence;
+    get defense() {
+        return this._defense;
     }
 
     get alacrity() {
@@ -121,5 +125,13 @@ export default class Player {
 
     get meleeRangedDefenceIncrease() {
         return this._meleeRangedDefenceIncrease;
+    }
+
+    get shieldIncrease() {
+        return this._shieldIncrease;
+    }
+
+    get absorbIncrease() {
+        return this._absorbIncrease;
     }
 }

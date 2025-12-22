@@ -1,5 +1,5 @@
 import Player from "../player";
-import Alacrity from "./alactrity";
+import Alacrity from "./alacrity";
 import Stat from "./stat";
 
 export default class GCD {
@@ -7,7 +7,7 @@ export default class GCD {
 
     static calculate(player: Player): number {
         const alacrity = Alacrity.calculate(player);
-        const gcd = 100 * this.BASE_GCD / (alacrity + 100);
+        const gcd = this.BASE_GCD / (alacrity + 1);
 
         return Math.ceil(gcd * 10) / 10;
     }

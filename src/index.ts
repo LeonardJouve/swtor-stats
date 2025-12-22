@@ -6,11 +6,13 @@ import BonusHealing from "./stats/bonus_healing";
 import CriticalChance from "./stats/critical_chance";
 import CriticalDamage from "./stats/critical_damage";
 import CriticalMultiplier from "./stats/critical_multiplier";
-import MeleeRangedDefence from "./stats/melee_ranged_defence";
-import Alacrity from "./stats/alactrity";
+import MeleeRangedDefence from "./stats/melee_ranged_defense";
+import Alacrity from "./stats/alacrity";
 import GCD from "./stats/gcd";
 import CastTime from "./stats/cast_time";
 import Accuracy from "./stats/accuracy";
+import Shield from "./stats/shield";
+import Absorb from "./stats/absorb";
 
 const player = new Player();
 const stats: Stat[] = [
@@ -25,6 +27,8 @@ const stats: Stat[] = [
     GCD,
     CastTime,
     Accuracy,
+    Shield,
+    Absorb,
 ];
 
 stats
