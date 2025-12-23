@@ -1,18 +1,47 @@
 import Player from "../player";
+import affliction from "../spells/inquisitor/affliction";
 import Event from "./event";
 
 export default class Timeline {
     public timestamp: number;
     private events: Event[];
+    private buffs: Set<string>;
+    private talents: Set<string>;
     public player: Player;
 
     constructor(player: Player) {
         this.timestamp = 0;
         this.events = [];
-
+        this.buffs = new Set();
+        this.talents = new Set();
         this.player = player;
 
         this.planGCD();
+        this.planEvent(affliction, 0);
+    }
+
+    addBuff(buff: string) {
+        this.buffs.add(buff);
+    }
+
+    removeBuff(buff: string) {
+        this.buffs.delete(buff);
+    }
+
+    hasBuff(buff: string) {
+        return this.buffs.has(buff);
+    }
+
+    addTalent(talent: string) {
+        this.talents.add(talent);
+    }
+
+    removeTalent(talent: string) {
+        this.talents.delete(talent);
+    }
+
+    hasTalent(talent: string) {
+        return this.talents.has(talent);
     }
 
     nextEvent() {
