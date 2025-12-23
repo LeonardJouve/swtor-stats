@@ -1,6 +1,6 @@
 import {percentageIncrease} from "../utils";
 
-export default class Rating {
+export default class Stat {
     protected initial: number = 0;
     protected coefficient: number = 0;
     private _rating: number = 0;

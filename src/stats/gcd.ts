@@ -1,9 +1,9 @@
-import Rating from "./rating";
+import Stat from "./stat";
 
-export default class GCD extends Rating {
-    private alacrity: Rating;
+export default class GCD extends Stat {
+    private alacrity: Stat;
 
-    constructor(alacrity: Rating) {
+    constructor(alacrity: Stat) {
         super();
         this.alacrity = alacrity;
     }

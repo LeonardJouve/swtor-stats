@@ -1,11 +1,11 @@
 import {diminishingReturn} from "../utils";
-import Rating from "./rating";
+import Stat from "./stat";
 
-export default class CriticalChance extends Rating {
-    private masteryRating: Rating;
-    private criticalRating: Rating;
+export default class CriticalChance extends Stat {
+    private masteryRating: Stat;
+    private criticalRating: Stat;
 
-    constructor(masteryRating: Rating, criticalRating: Rating) {
+    constructor(masteryRating: Stat, criticalRating: Stat) {
         super();
         this.initial += 0.05;
         this.masteryRating = masteryRating;

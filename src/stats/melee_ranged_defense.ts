@@ -1,10 +1,10 @@
 import {diminishingReturn} from "../utils";
-import Rating from "./rating";
+import Stat from "./stat";
 
-export default class MeleeRangedDefence extends Rating {
-    private defenseRating: Rating;
+export default class MeleeRangedDefence extends Stat {
+    private defenseRating: Stat;
 
-    constructor(defenseRating: Rating) {
+    constructor(defenseRating: Stat) {
         super();
         this.coefficient += 0.05;
         this.defenseRating = defenseRating;

@@ -1,9 +1,9 @@
-import Rating from "./rating";
+import Stat from "./stat";
 
-export default class Health extends Rating {
-    private enduranceRating: Rating;
+export default class Health extends Stat {
+    private enduranceRating: Stat;
 
-    constructor(enduranceRating: Rating) {
+    constructor(enduranceRating: Stat) {
         super();
         this.initial += 23_750;
         this.enduranceRating = enduranceRating;

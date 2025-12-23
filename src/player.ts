@@ -10,7 +10,7 @@ import CriticalMultiplier from "./stats/critical_multiplier";
 import GCD from "./stats/gcd";
 import Health from "./stats/health";
 import MeleeRangedDefence from "./stats/melee_ranged_defense";
-import Rating from "./stats/rating";
+import Stat from "./stats/stat";
 import Shield from "./stats/shield";
 
 type Ratings = {
@@ -48,15 +48,15 @@ export default class Player {
         this.shieldRating.rating = shield;
     }
 
-    public absorbRating = new Rating();
-    public accuracyRating = new Rating();
-    public alacrityRating = new Rating();
-    public criticalRating = new Rating();
-    public defenseRating = new Rating();
-    public enduranceRating = new Rating();
-    public masteryRating = new Rating();
-    public powerRating = new Rating();
-    public shieldRating = new Rating();
+    public absorbRating = new Stat();
+    public accuracyRating = new Stat();
+    public alacrityRating = new Stat();
+    public criticalRating = new Stat();
+    public defenseRating = new Stat();
+    public enduranceRating = new Stat();
+    public masteryRating = new Stat();
+    public powerRating = new Stat();
+    public shieldRating = new Stat();
 
     public absorb = new Absorb(this.absorbRating);
     public accuracy = new Accuracy(this.accuracyRating);

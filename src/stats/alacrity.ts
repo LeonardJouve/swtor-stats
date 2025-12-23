@@ -1,10 +1,10 @@
 import {diminishingReturn} from "../utils";
-import Rating from "./rating";
+import Stat from "./stat";
 
-export default class Alacrity extends Rating {
-    private alacrityRating: Rating;
+export default class Alacrity extends Stat {
+    private alacrityRating: Stat;
 
-    constructor(alacrityRating: Rating) {
+    constructor(alacrityRating: Stat) {
         super();
         this.alacrityRating = alacrityRating;
     }

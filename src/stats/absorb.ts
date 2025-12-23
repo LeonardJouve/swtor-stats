@@ -1,10 +1,10 @@
 import {diminishingReturn} from "../utils";
-import Rating from "./rating";
+import Stat from "./stat";
 
-export default class Absorb extends Rating {
-    private absorbRating: Rating;
+export default class Absorb extends Stat {
+    private absorbRating: Stat;
 
-    constructor(absorbRating: Rating) {
+    constructor(absorbRating: Stat) {
         super();
         this.absorbRating = absorbRating;
     }

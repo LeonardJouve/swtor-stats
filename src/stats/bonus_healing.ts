@@ -1,11 +1,11 @@
 import {linear} from "../utils";
-import Rating from "./rating";
+import Stat from "./stat";
 
-export default class BonusHealing extends Rating {
-    private masteryRating: Rating;
-    private powerRating: Rating;
+export default class BonusHealing extends Stat {
+    private masteryRating: Stat;
+    private powerRating: Stat;
 
-    constructor(masteryRating: Rating, powerRating: Rating) {
+    constructor(masteryRating: Stat, powerRating: Stat) {
         super();
         this.masteryRating = masteryRating;
         this.powerRating = powerRating;

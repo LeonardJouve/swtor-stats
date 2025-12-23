@@ -1,10 +1,10 @@
 import {diminishingReturn} from "../utils";
-import Rating from "./rating";
+import Stat from "./stat";
 
-export default class Accuracy extends Rating {
-    private accuracyRating: Rating;
+export default class Accuracy extends Stat {
+    private accuracyRating: Stat;
 
-    constructor(accuracyRating: Rating) {
+    constructor(accuracyRating: Stat) {
         super();
         this.accuracyRating = accuracyRating;
     }

@@ -1,10 +1,10 @@
 import {diminishingReturn} from "../utils";
-import Rating from "./rating";
+import Stat from "./stat";
 
-export default class Shield extends Rating {
-    private shieldRating: Rating;
+export default class Shield extends Stat {
+    private shieldRating: Stat;
 
-    constructor(shieldRating: Rating) {
+    constructor(shieldRating: Stat) {
         super();
         this.shieldRating = shieldRating;
     }

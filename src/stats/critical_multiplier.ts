@@ -1,10 +1,10 @@
 import {diminishingReturn} from "../utils";
-import Rating from "./rating";
+import Stat from "./stat";
 
-export default class CriticalMultiplier extends Rating {
-    private criticalRating: Rating;
+export default class CriticalMultiplier extends Stat {
+    private criticalRating: Stat;
 
-    constructor(criticalRating: Rating) {
+    constructor(criticalRating: Stat) {
         super();
         this.coefficient += 0.5;
         this.criticalRating = criticalRating;

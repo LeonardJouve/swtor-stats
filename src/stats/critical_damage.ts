@@ -1,10 +1,10 @@
-import Rating from "./rating";
+import Stat from "./stat";
 
-export default class CriticalDamage extends Rating {
-    private criticalMultiplier: Rating;
-    private criticalChance: Rating;
+export default class CriticalDamage extends Stat {
+    private criticalMultiplier: Stat;
+    private criticalChance: Stat;
 
-    constructor(criticalMultiplier: Rating, criticalChance: Rating) {
+    constructor(criticalMultiplier: Stat, criticalChance: Stat) {
         super();
         this.criticalMultiplier = criticalMultiplier;
         this.criticalChance = criticalChance;
